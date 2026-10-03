@@ -7,11 +7,11 @@ Two ways to add a SmartForm contact form to a Netlify-hosted site.
 The endpoint accepts a standard HTML form POST or JSON via AJAX. Two
 kinds of fields:
 
-**Your form fields** â€” `name`, `email`, `message`, whatever you
+**Your form fields** â€?`name`, `email`, `message`, whatever you
 want. Every non-reserved field lands in your dashboard as a column in
 the submissions table.
 
-**Reserved fields** â€” names starting with `_` are interpreted by
+**Reserved fields** â€?names starting with `_` are interpreted by
 the API, not stored:
 
 | Field | Purpose |
@@ -22,7 +22,7 @@ the API, not stored:
 | ``_subject`` | Override the AI-generated email subject line. Max 200 chars; control characters stripped. |
 | `X-Gotcha` header | Same as `_gotcha` for JSON requests where you can't add a hidden form field. |
 
-Field names are Formspree-compatible â€” migrating from
+Field names are Formspree-compatible â€?migrating from
 `formspree.io/f/{form_id}` requires no renaming.
 
 ## Setup
@@ -30,14 +30,14 @@ Field names are Formspree-compatible â€” migrating from
 1. Get a form ID at https://usesmartform.com/dashboard.
 2. Clone, configure, deploy:
    ```bash
-   git clone https://github.com/yanghuai123456/smartform-example-netlify.git
+   git clone https://github.com/smartformai/smartform-example-netlify.git
    cd smartform-example-netlify
-   # edit netlify.toml â†’ context "production" env SMARTFORM_FORM_ID
+   # edit netlify.toml â†?context "production" env SMARTFORM_FORM_ID
    npx netlify deploy --prod
    ```
 3. Open the deployed URL, submit, check your dashboard.
 
-## Option A â€” pure static HTML form (no Netlify Functions)
+## Option A â€?pure static HTML form (no Netlify Functions)
 
 `index.html` ships a plain HTML form that posts directly to SmartForm's public endpoint.
 Netlify's static hosting serves it; there is no Netlify Function involved.
@@ -55,7 +55,7 @@ Netlify's static hosting serves it; there is no Netlify Function involved.
 
 Replace `YOUR_FORM_ID` with the 8-char ID from your dashboard.
 
-## Option B â€” Netlify Function proxy
+## Option B â€?Netlify Function proxy
 
 `netlify/functions/submit.mjs` is a small serverless function that forwards browser submissions
 to SmartForm. Use this when you want to:
@@ -68,7 +68,7 @@ The browser calls `/.netlify/functions/submit` and the function does the upstrea
 
 ## How the API works
 
-- `POST https://api.usesmartform.com/api/v1/f/{form_id}` â€” JSON or form-data, no API key.
+- `POST https://api.usesmartform.com/api/v1/f/{form_id}` â€?JSON or form-data, no API key.
 - Response: `{ success, message, submission_id, is_spam, intent, next_url }`.
 
 For the full contract, see https://usesmartform.com/docs.
@@ -80,7 +80,7 @@ For the full contract, see https://usesmartform.com/docs.
 
 Yes. AI spam filtering is enabled by default on every plan. AI intent
 classification and high-value lead detection require a paid plan (Pro
-or Business) â€” the dashboard enforces this and returns HTTP 402 if
+or Business) â€?the dashboard enforces this and returns HTTP 402 if
 you try to enable them on a free workspace.
 
 ### Do I need an API key?
@@ -93,7 +93,7 @@ form ID, which is non-enumerable. The example also includes a hidden
 Netlify Forms is bound to Netlify hosting. This example works on any static host and adds an AI spam filter instead of honeypot-only detection.
 
 ## Related examples
-[Vercel Functions proxy](https://github.com/yanghuai123456/smartform-example-serverless-vercel) | [Cloudflare Pages contact form](https://github.com/yanghuai123456/smartform-example-cloudflare-react) | [Astro contact form](https://github.com/yanghuai123456/smartform-example-astro)
+[Vercel Functions proxy](https://github.com/smartformai/smartform-example-serverless-vercel) | [Cloudflare Pages contact form](https://github.com/smartformai/smartform-example-cloudflare-react) | [Astro contact form](https://github.com/smartformai/smartform-example-astro)
 
 
 ## License
